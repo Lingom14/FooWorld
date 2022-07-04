@@ -8,14 +8,14 @@ jobs:
     env:
       APP_ID: 07a91ebc8a374a8b84d75f93e613401ee54b8d171a4c35e69a02d8af9042848e
       BRANCH_NAME: main
-      SCAN_ID: 4d6051a98418745babff3d6cd7c108da7dbe475f239b21c0826b1a7706a374fa
-      REQ_URL_MAP: "${{toJSON('{\"SL_API_HOST\":\"https://slapi.dev.securin.io\",\"\
-        SL_RESULT_API_HOST\":\"https://slresultapi.dev.securin.io\",\"SL_RESULTPARSER_API_HOST\"\
-        :\"https://slresultparserapi.dev.securin.io\"}')}}"
+      SCAN_ID: 574a183dcd189f2b35b39bbbcf00ee1750ad4de9b42eab7c5c55aacfdd44d5c9
+      REQ_URL_MAP: "${{toJSON('{\"SL_RESULT_API_HOST\":\"http://5571-27-5-160-171.ngrok.io/resultapi\"\
+        ,\"SL_RESULTPARSER_API_HOST\":\"http://0720-27-5-160-171.ngrok.io/resultparserapi\"\
+        }')}}"
     steps:
     - name: Retrieve Token Info
       id: auth_token
-      run: "respJson=$(curl --location --request GET 'https://slresultapi.dev.securin.io/aws/ecr/token'\
+      run: "respJson=$(curl --location --request GET 'http://5571-27-5-160-171.ngrok.io/resultapi/aws/ecr/token'\
         \  --header 'Authorization: Bearer ${{secrets.CLI_ACCESS_TOKEN}}'  --data-raw\
         \ ' ' )\necho \"::set-output name=authTokenJson::$respJson\""
     - uses: actions/checkout@v2
